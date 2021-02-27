@@ -6,8 +6,6 @@ const session = require('express-session');
 
 const app = express();
 
-app.locals.appName = 'Oquiz';
-
 const port = process.env.PORT || 5000;
 
 app.set('view engine', 'ejs');
