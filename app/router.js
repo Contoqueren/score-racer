@@ -20,7 +20,10 @@ router.post('/signup', userController.handleSignupForm);
 //cette route sera protégée par le middleware maison adminMW
 //seuls les utilisateurs admin pourront accéder à la page du menu admin
 router.get('/admin', adminMW, adminController.adminPage);
-router.post('/admin', adminMW, adminController.createRace);
+router.post('/admin/newrace', adminMW, adminController.createRace);
+router.post('/admin/deleterace', adminMW, adminController.deleteRace);
+router.post('/admin/newgame', adminMW, adminController.createGame);
+router.post('/admin/deletegame', adminMW, adminController.deleteGame);
 
 
 //deconnexion

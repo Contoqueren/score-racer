@@ -59,7 +59,7 @@ const userController = {
                 request.session.cookie.expires = new Date(Date.now() + 3600000);
             }
 
-            response.redirect('/');
+            response.redirect('/admin');
         } catch (error) {
             console.log(error);
         }
