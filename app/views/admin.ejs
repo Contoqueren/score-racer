@@ -2,77 +2,80 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Score-racer</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Score-racer</title>
 </head>
 
 <body>
+	<h1>Bienvenue dans l'espace admin</h1>
 
-    <h1> Bienvenu dans l'espace admin</h1>
+	<h2>Races</h2>
+	<% for (const race of races) { %>
+	<p>
+		<%= race.player_number%> inscrits pour la race du <%= race.date %> sur le
+		jeu <%= race.game.name %>
+	</p>
+	<% } %>
 
-    <h2>Races</h2>
-    <% for (const race of races) { %>
-    <p><%= race.player_number%> inscrits pour la race du <%= race.date %> sur le jeu <%= race.game.name %></p>
-    <% } %>
+	<form action="/admin/newrace" method="POST">
+		<div>
+			<label for="date">Date de la race</label>
+			<input type="datetime-local" name="date" placeholder="format timestamptz" />
+		</div>
+		<button type="submit">Créer une race</button>
+	</form>
 
-    <form action="/admin/newrace" method="POST">
-        <div>
-            <label for="date">Date de la race</label>
-            <input type="datetime-local" name="date" placeholder="format timestamptz">
-        </div>
-        <button type="submit">Créer une race</button>
-    </form>
+	<form action="/admin/deleterace" method="POST">
+		<div>
+			<label for="id">Race à supprimer</label>
+			<select name="id">
+				<option value="">--Choisis une race--</option>
+				<% for (const race of races) { %>
+				<option value="<%= race.id %>"><%= race.date %></option>
+				<% } %>
+			</select>
+			<button type="submit">Supprimer la race</button>
+		</div>
+	</form>
 
-    <form action="/admin/deleterace" method="POST">
-        <div>
-            <label for="id">Race à supprimer</label>
-            <select name="id">
-                <option value="">--Choisis une race--</option>
-                <% for (const race of races) { %>
-                <option value="<%= race.id %>"><%= race.date %></option>
-                <% } %>
-            </select>
-            <button type="submit">Supprimer la race</button>
-        </div>
-    </form>
+	<h2>Games</h2>
+	<ul>
+		<% for (const game of games) { %>
+		<li><%= game.name %></li>
+		<% } %>
+	</ul>
 
-    <h2>Games</h2>
-    <ul>
-        <% for (const game of games) { %>
-        <li><%= game.name %></li>
-        <% } %>
-    </ul>
+	<form action="/admin/newgame" method="POST">
+		<div>
+			<label for="name">Titre du jeu</label>
+			<input type="text" name="name" placeholder="titre" />
+		</div>
+		<button type="submit">Ajouter un jeu</button>
+	</form>
 
-    <form action="/admin/newgame" method="POST">
-        <div>
-            <label for="name">Titre du jeu</label>
-            <input type="text" name="name" placeholder="titre">
-        </div>
-        <button type="submit">Ajouter un jeu</button>
-    </form>
+	<form action="/admin/deletegame" method="POST">
+		<div>
+			<label for="id">Jeu à supprimer</label>
+			<select name="id">
+				<option value="">--Choisis une jeu--</option>
+				<% for (const game of games) { %>
+				<option value="<%= game.id %>"><%= game.name %></option>
+				<% } %>
+			</select>
+			<button type="submit">Supprimer le jeu</button>
+		</div>
+	</form>
 
-    <form action="/admin/deletegame" method="POST">
-        <div>
-            <label for="id">Jeu à supprimer</label>
-            <select name="id">
-                <option value="">--Choisis une jeu--</option>
-                <% for (const game of games) { %>
-                <option value="<%= game.id %>"><%= game.name %></option>
-                <% } %>
-            </select>
-            <button type="submit">Supprimer le jeu</button>
-        </div>
-    </form>
-
-    <h2>Games</h2>
-    <ul>
-        <% for (const user of users) { %>
-        <li><%= user.pseudo %> <a href="https://twitch.tv/<%= user.twitch %>">Chaine twitch</a></li>
-        <% } %>
-    </ul>
-
-
+	<h2>Games</h2>
+	<ul>
+		<% for (const user of users) { %>
+		<li>
+			<%= user.pseudo %>
+			<a href="https://twitch.tv/<%= user.twitch %>">Chaine twitch</a>
+		</li>
+		<% } %>
+	</ul>
 </body>
 
 </html>

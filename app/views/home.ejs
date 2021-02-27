@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Score-racer</title>
+</head>
+
+<body>
+
+    <h2>Race du jour</h2>
+
+    <p><%= race.player_number%> inscrits pour la race du <%= race.date %> sur le jeu <%= race.game.name %></p>
+
+    <h2>Games</h2>
+    <ul>
+        <% for (const game of games) { %>
+        <li><%= game.name %></li>
+        <% } %>
+    </ul>
+
+    <h2>Classement des joueurs</h2>
+
+    <ul>
+        <% for (const user of users) { %>
+        <li>
+            <%= user.pseudo %>
+            <a href="https://twitch.tv/<%= user.twitch %>">Chaine twitch</a>
+        </li>
+        <% } %>
+    </ul>
+
+</body>
+
+</html>

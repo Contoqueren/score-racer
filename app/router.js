@@ -2,11 +2,15 @@ const express = require('express');
 
 const userController = require('./controllers/userController');
 const adminController = require('./controllers/adminController');
+const mainController = require('./controllers/mainController');
 
 //middlewares
 const adminMW = require('./middlewares/adminMW');
 
 const router = express.Router();
+
+// Page d'acceuil
+router.get('/', mainController.home);
 
 //afficher le formulaire de login
 router.get('/login', userController.loginForm);
