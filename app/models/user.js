@@ -7,7 +7,8 @@ User.init({
     pseudo: Sequelize.STRING,
     password: Sequelize.STRING,
     twitch: Sequelize.STRING,
-    avatar: Sequelize.STRING
+    avatar: Sequelize.STRING,
+    role: Sequelize.STRING,
 }, {
     sequelize,
     tableName: "user"

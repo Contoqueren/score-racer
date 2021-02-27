@@ -49,13 +49,15 @@ const userController = {
                 role: user.role
             };
 
-            // if (request.body.remember) {
-            //     //l'utilisateur a coché la case 'se souvenir de moi'
-            //     //on ajoute une heiure de validité à sa session
-            //     //il peut ainsi quitter son navigateur et revenir sur la page, il devrait rester connecté
-            //     //on indique en date d'expiration la date courante + une heure (en millisecondes)
-            //     request.session.cookie.expires = new Date(Date.now() + 3600000);
-            // }
+            console.log(request.session.user.pseudo, request.session.user.twitch, request.session.user.role);
+
+            if (request.body.remember) {
+                //l'utilisateur a coché la case 'se souvenir de moi'
+                //on ajoute une heiure de validité à sa session
+                //il peut ainsi quitter son navigateur et revenir sur la page, il devrait rester connecté
+                //on indique en date d'expiration la date courante + une heure (en millisecondes)
+                request.session.cookie.expires = new Date(Date.now() + 3600000);
+            }
 
             response.redirect('/');
         } catch (error) {

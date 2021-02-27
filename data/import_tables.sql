@@ -6,7 +6,7 @@ CREATE TABLE "user" (
     "id" serial PRIMARY KEY,
     "pseudo" text NOT NULL,
     "password" text NOT NULL,
-    "role" text DEFAULT "user"
+    "role" text DEFAULT 'user',
     "twitch" text,
     "avatar" text
 );

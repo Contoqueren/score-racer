@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Score-racer</title>
+</head>
+
+<body>
+
+    <h1> Bienvenue dans l'espace admin</h1>
+
+    <h2>Races</h2>
+    <% for (const race of races) { %>
+    <p><%= race.player_number%> inscrits pour la race du <%= race.date %> sur le jeu <% race.name%></p>
+    <% } %>
+
+    <form action="/admin" method="POST">
+        <div>
+            <input type="datetime-local" name="date" placeholder="format timestamptz">
+            <label for="date">Date de la race</label>
+        </div>
+        <button type="submit">Créer une race</button>
+    </form>
+
+</body>
+
+</html>

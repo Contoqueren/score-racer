@@ -1,6 +1,10 @@
 const express = require('express');
 
 const userController = require('./controllers/userController');
+const adminController = require('./controllers/adminController');
+
+//middlewares
+const adminMW = require('./middlewares/adminMW');
 
 const router = express.Router();
 
@@ -11,5 +15,15 @@ router.post('/login', userController.handleLoginForm);
 //afficher le formulaire d'inscription
 router.get('/signup', userController.signupForm);
 router.post('/signup', userController.handleSignupForm);
+
+//afficher le menu admin
+//cette route sera protégée par le middleware maison adminMW
+//seuls les utilisateurs admin pourront accéder à la page du menu admin
+router.get('/admin', adminMW, adminController.adminPage);
+router.post('/admin', adminMW, adminController.createRace);
+
+
+//deconnexion
+router.get('/logout', userController.logout);
 
 module.exports = router;
