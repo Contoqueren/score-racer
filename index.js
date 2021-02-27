@@ -1,47 +1,47 @@
-require('dotenv').config();
+  //on charge les variables d'environnement
+  require('dotenv').config();
 
-const express = require('express');
-const router = require('./app/router');
-const session = require('express-session');
+  const express = require('express');
+  const router = require('./app/router');
+  const session = require('express-session');
 
-const app = express();
+  const userMW = require('./app/middlewares/userMW');
 
-const port = process.env.PORT || 5000;
+  const app = express();
+  //on utilise la variable d'environnement PORT pour attribuer un port à notre appli express
+  //En cas de pépin, on se rabat sur une valeur par défaut
+  const PORT = process.env.PORT || 4000;
 
-app.set('view engine', 'ejs');
-app.set('views', __dirname + '/app/views');
+  //configuration pour utiliser EJS comme moteur de templates
+  app.set('view engine', 'ejs');
+  app.set('views', './app/views');
 
-// mise en place et configuration de la session
-app.use(session({
-    resave: true,
-    saveUninitialized: true,
-    secret: 'zziuqo',
-    cookie: {
-        secure: false,
-        maxAge: 60 * 60 * 1000 // une heure
-    }
-}));
+  //on ajoute les ressources statiques du projet
+  //on ne va pas utiliser les fichiers html fournis mais des vues ejs
+  //le middleware static servira uniquement pour les fichiers css
+  app.use(express.static('./integration/css'));
 
-// rendre disponible dans toutes les vues, l'éventuel utilisateur connecté
-app.use((req, res, next) => {
-    // si un utilisateur est connecté
-    if (req.session.user) {
-        // on le rend disponible dans les views
-        res.locals.user = req.session.user;
-    }
+  //mise en place du système de sessions pour stocker les infos utilisateur
+  app.use(session({
+      secret: "contos",
+      resave: true,
+      saveUninitialized: true
+  }));
 
-    next();
-})
+  //on veut utiliser notre middleware maison pour initialiser user en session à chaque requête
+  app.use(userMW);
 
-app.use(express.static(__dirname + '/static'));
 
-// rend disponible req.body dans les requêtes POST
-app.use(express.urlencoded({
-    extended: true
-}));
+  //on va devoir gérer des données en POST
+  //on ajoute le middleware urlencoded pour récupérer les infos dans request.body
+  app.use(express.urlencoded({
+      extended: true
+  }));
 
-app.use(router);
+  app.use(router);
 
-app.listen(port, () => {
-    console.log('Running on http://localhost:' + port);
-});
+
+  //on lance le serveur
+  app.listen(PORT, () => {
+      console.log(`Server started on port ${PORT}`);
+  });

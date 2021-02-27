@@ -1,0 +1,31 @@
+<% if (locals.error) {%>
+<div class="error"><%= error %></div>
+<% } %>
+
+<form action="/signup" method="POST" class="form-signin">
+
+    <div>
+        <input type="pseudo" name="pseudo" placeholder="Votre nom">
+        <label for="lastname">Votre pseudo</label>
+    </div>
+
+    <div>
+        <input type="twitch" name="twitch" placeholder="twitch">
+        <label for="twitch">Votre pseudo twitch</label>
+    </div>
+
+    <div>
+        <input type="password" name="password" placeholder="mot de passe">
+        <label for="password">Votre mot de mot de passe</label>
+    </div>
+
+
+    <div>
+        <input type="password" name="passwordConfirm" placeholder="mot de passe">
+        <label for="passwordConfirm">Confirmez votre mot de passe</label>
+    </div>
+
+    <div>
+        <button type="submit">S'inscrire'</button>
+    </div>
+</form>
