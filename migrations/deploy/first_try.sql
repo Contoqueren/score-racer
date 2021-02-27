@@ -1,6 +1,6 @@
-BEGIN;
+-- Deploy score-racer:first_try to pg
 
-DROP TABLE IF EXISTS "user", "race", "game", "user_participate_race", "scoring";
+BEGIN;
 
 CREATE TABLE "user" (
     "id" serial PRIMARY KEY,
