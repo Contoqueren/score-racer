@@ -11,10 +11,16 @@
 
     <h2>Race du jour</h2>
 
-    <p><%= race.player_number%> inscrits pour la race du <%= race.date %> sur le jeu <%= race.game.name %></p>
+    <p><%= race.player_number%> inscrits pour la race du <%= race.date %> sur le jeu <%= race.game.name %> : </p>
+
+    <ul>
+        <% for (const user of race.users) { %>
+        <li><%= user.pseudo %></li>
+        <% } %>
+    </ul>
 
     <form action="/subscribe" method="post">
-        <input type="submit" name="subscribe" value="Upvote" />
+        <button name="subscribe" value="<%= race.id %>">S'inscrire à cette race</button>
     </form>
 
     <h2>Games</h2>

@@ -43,6 +43,7 @@ const userController = {
             //le user existe et s'est correctement identifié, on stocke les infos qui vont bien dans la session
 
             request.session.user = {
+                id: user.id,
                 pseudo: user.pseudo,
                 twitch: user.twitch,
                 avatar: user.avatar,

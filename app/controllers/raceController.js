@@ -11,23 +11,25 @@ const raceController = {
 
     subscribeToTheRace: async (req, res) => {
 
-        const race = await Race.findOne({
-            include: ['users', 'game'],
-            where: {
-                date: {
-                    [Op.gt]: Date.now()
-                }
-            },
-            order: [
-                ['date', 'ASC']
-            ]
-        });
-
         if (req.session.user) {
             const subscribed = await RaceUser.create({
-                race_id: 11,
-                user_id: 1
+                race_id: req.body.subscribe,
+                user_id: req.session.user.id
             })
+
+            const theRace = await Race.findByPk(req.body.subscribe);
+
+            const newPlayerNumber = theRace.player_number + 1;
+
+            const changePlayerNumber = await Race.update({
+                    player_number: newPlayerNumber
+                }, {
+                    where: {
+                        id: req.body.subscribe
+                    }
+                }
+
+            )
         }
 
         res.redirect('/');
