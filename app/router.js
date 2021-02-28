@@ -12,7 +12,8 @@ const router = express.Router();
 
 // Page d'acceuil
 router.get('/', mainController.home);
-router.post('/subscribe', raceController.subscribeToTheRace)
+router.post('/subscribe', raceController.subscribeToTheRace);
+router.post('/unsubscribe', raceController.unsubscribeToTheRace);
 
 //afficher le formulaire de login
 router.get('/login', userController.loginForm);
@@ -31,6 +32,8 @@ router.post('/admin/deleterace', adminMW, adminController.deleteRace);
 router.post('/admin/newgame', adminMW, adminController.createGame);
 router.post('/admin/deletegame', adminMW, adminController.deleteGame);
 
+//Affiche la race
+router.get('/race/:id', raceController.raceById);
 
 //deconnexion
 router.get('/logout', userController.logout);

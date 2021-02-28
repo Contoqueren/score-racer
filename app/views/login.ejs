@@ -1,39 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('partials/header') %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Score-racer</title>
-</head>
 
-<body>
-
-    <%# en cas d'erreur, on passera une variable error à notre vue %>
-    <% if (locals.error) {%>
-    <div><%= error %></div>
-    <% } %>
+<%# en cas d'erreur, on passera une variable error à notre vue %>
+<% if (locals.error) {%>
+<div><%= error %></div>
+<% } %>
+<div>
     <div>
-        <div>
-            <form action="" method="POST">
-                <div>
-                    <input type="pseudo" name="pseudo" placeholder="pseudo">
-                    <label for="pseudo">Votre pseudo</label>
-                </div>
-                <div>
-                    <input type="password" name="password" placeholder="password">
-                    <label for="password">Votre mot de passe</label>
-                </div>
-                <div>
-                    <label>
-                        <input type="checkbox" value="remember-me" name="remember"> Se souvenir de moi
-                    </label>
-                </div>
-                <button type="submit">Se connecter</button>
-            </form>
-        </div>
+        <form action="" method="POST">
+            <div>
+                <input type="pseudo" name="pseudo" placeholder="pseudo">
+                <label for="pseudo">Votre pseudo</label>
+            </div>
+            <div>
+                <input type="password" name="password" placeholder="password">
+                <label for="password">Votre mot de passe</label>
+            </div>
+            <div>
+                <label>
+                    <input type="checkbox" value="remember-me" name="remember"> Se souvenir de moi
+                </label>
+            </div>
+            <button type="submit">Se connecter</button>
+        </form>
     </div>
+</div>
 
-</body>
-
-</html>
+<%- include('partials/footer') %>

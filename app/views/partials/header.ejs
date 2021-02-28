@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Score-Racer</title>
+</head>
+
+<body>
+
+    <header>
+        <h1><a href="/">Score-Racer</a></h1>
+        <div> <a href="/leaderboard">Classement</a></div>
+        <div> <a href="/races">Races</a></div>
+        <div>
+            <% if (user !== false) {%>
+            <a href="/account">Bonjour <%= user.pseudo %></a>
+            <a href="/logout">Se déconnecter</a>
+            <% if (user.role === 'admin') {%>
+            <a href="/admin">Admin</a>
+            <% } %>
+            <% } else { %>
+            <a href="/signup">S'inscrire</a>
+            <a href="/login">Se connecter</a>
+            <% } %>
+        </div>
+    </header>
