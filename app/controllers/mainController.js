@@ -1,7 +1,8 @@
 const {
     User,
     Race,
-    Game
+    Game,
+    RaceUser
 } = require('../models');
 
 const {
@@ -29,10 +30,18 @@ const mainController = {
                 include: 'scores'
             })
 
+            const isSubscribed = await RaceUser.findOne({
+                where: {
+                    race_id: race.id,
+                    user_id: req.session.user.id || 0
+                }
+            })
+
             res.render('home', {
                 games,
                 race,
-                users
+                users,
+                isSubscribed
             });
 
         } catch (error) {

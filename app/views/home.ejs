@@ -19,9 +19,11 @@
         <% } %>
     </ul>
 
+    <% if (!isSubscribed) { %>
     <form action="/subscribe" method="post">
         <button name="subscribe" value="<%= race.id %>">S'inscrire à cette race</button>
     </form>
+    <% } %>
 
     <h2>Games</h2>
     <ul>
