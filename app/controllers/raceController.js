@@ -12,6 +12,18 @@ const raceController = {
     subscribeToTheRace: async (req, res) => {
 
         if (req.session.user) {
+
+            const isSubscribed = await RaceUser.findOne({
+                where: {
+                    race_id: req.body.subscribe,
+                    user_id: req.session.user.id
+                }
+            })
+
+            if (isSubscribed) {
+                return res.redirect('/');
+            }
+
             const subscribed = await RaceUser.create({
                 race_id: req.body.subscribe,
                 user_id: req.session.user.id

@@ -50,7 +50,7 @@ const userController = {
                 role: user.role
             };
 
-            console.log(request.session.user.pseudo, request.session.user.twitch, request.session.user.role);
+
 
             if (request.body.remember) {
                 //l'utilisateur a coché la case 'se souvenir de moi'
