@@ -2,6 +2,7 @@ const Game = require('./game');
 const Race = require('./race');
 const Scoring = require('./scoring');
 const User = require('./user');
+const RaceUser = require('./raceUser')
 
 // Un jeu correspond à plusieurs races
 Game.hasMany(Race, {
@@ -55,9 +56,27 @@ Race.belongsToMany(User, {
     otherKey: "user_id"
 });
 
+// Mise en place de la table de liaison race/user
+RaceUser.belongsTo(Race, {
+    foreignKey: 'race_id'
+});
+
+RaceUser.belongsTo(User, {
+    foreignKey: 'user_id'
+});
+
+User.hasMany(RaceUser, {
+    foreignKey: 'user_id'
+})
+
+Race.hasMany(RaceUser, {
+    foreignKey: 'race_id'
+})
+
 module.exports = {
     Game,
     Race,
     Scoring,
-    User
+    User,
+    RaceUser
 };

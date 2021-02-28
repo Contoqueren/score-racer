@@ -13,6 +13,10 @@
 
     <p><%= race.player_number%> inscrits pour la race du <%= race.date %> sur le jeu <%= race.game.name %></p>
 
+    <form action="/subscribe" method="post">
+        <input type="submit" name="subscribe" value="Upvote" />
+    </form>
+
     <h2>Games</h2>
     <ul>
         <% for (const game of games) { %>

@@ -21,7 +21,7 @@ const mainController = {
                     }
                 },
                 order: [
-                    ['date', 'DESC']
+                    ['date', 'ASC']
                 ]
             });
 

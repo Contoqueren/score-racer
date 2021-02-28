@@ -3,6 +3,7 @@ const express = require('express');
 const userController = require('./controllers/userController');
 const adminController = require('./controllers/adminController');
 const mainController = require('./controllers/mainController');
+const raceController = require('./controllers/raceController')
 
 //middlewares
 const adminMW = require('./middlewares/adminMW');
@@ -11,6 +12,7 @@ const router = express.Router();
 
 // Page d'acceuil
 router.get('/', mainController.home);
+router.post('/subscribe', raceController.subscribeToTheRace)
 
 //afficher le formulaire de login
 router.get('/login', userController.loginForm);
