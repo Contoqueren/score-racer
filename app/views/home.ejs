@@ -1,9 +1,11 @@
 <%- include('partials/header') %>
 
-
+<% if(race){ %>
 <h2><a href="/race/<%= race.id %>">Race du jour</a></h2>
 
+
 <p><%= race.player_number%> inscrits pour la race du <%= race.date %> sur le jeu <%= race.game.name %></p>
+
 
 <ul>
     <% for (const user of race.users) { %>
@@ -19,6 +21,7 @@
 <form action="/unsubscribe" method="post">
     <button name="unsubscribe" value="<%= race.id %>">Se désinscrire de cette race</button>
 </form>
+<% } %>
 <% } %>
 
 <h2>Games</h2>

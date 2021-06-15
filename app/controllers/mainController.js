@@ -14,7 +14,7 @@ const mainController = {
         try {
             const games = await Game.findAll();
 
-            const race = await Race.findOne({
+            let race = await Race.findOne({
                 include: ['users', 'game'],
                 where: {
                     date: {
@@ -30,12 +30,16 @@ const mainController = {
                 include: 'scores'
             })
 
-            const isSubscribed = await RaceUser.findOne({
-                where: {
-                    race_id: race.id,
-                    user_id: req.session.user.id || 0
-                }
-            })
+            let isSubscribed = undefined;
+
+            if (race) {
+                isSubscribed = await RaceUser.findOne({
+                    where: {
+                        race_id: race.id,
+                        user_id: req.session.user.id || 0
+                    }
+                })
+            }
 
             res.render('home', {
                 games,
